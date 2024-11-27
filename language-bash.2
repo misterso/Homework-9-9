@@ -1,0 +1,16 @@
+# ownersoft.sh
+#!/bin/bash
+
+SOURCE_DIR=$1
+
+if [ -d "$SOURCE_DIR" ]; then
+    for file in "$SOURCE_DIR"/*; do
+        if [ -f "$file" ]; then
+            OWNER=$(stat -c '%U' "$file")
+            mkdir -p "$SOURCE_DIR/$OWNER"
+            cp "$file" "$SOURCE_DIR/$OWNER/"
+        fi
+    done
+else
+    echo "Ошибка: Директория не существует."
+fi
