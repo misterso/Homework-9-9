@@ -1,0 +1,10 @@
+# clean_directories.sh
+#!/bin/bash
+
+DIRECTORY=$1
+
+if [ -d "$DIRECTORY" ]; then
+    find "$DIRECTORY" -type f \( -name "*.bak" -o -name "*.tmp" -o -name "*.backup" \) -exec rm -f {} \;
+else
+    echo "Ошибка: Директория не существует."
+fi
